@@ -1,20 +1,45 @@
 import Image from "next/image";
 import { ResponsiveChord } from "@nivo/chord";
 
+import ArcTooltipMemoized from './arc';
+import RibbonTooltipMemoized from './ribbon';
+
 export default function Home() {
-  const data = [
-    [234, 155, 154, 139, 238],
-    [415, 1906, 1332, 241, 210],
-    [59, 3, 1736, 219, 826],
-    [465, 922, 183, 230, 28],
-    [326, 456, 214, 926, 1689]
-  ];
+
+  const data = {
+    keys: ["Action Points", "Auction/Bidding", "Auction: Dutch", "Events", "Income", "Open Drafting", "Take That", "End Game Bonuses", "Income", "Layering", "Market", "Modular Board", "Multi-Use Cards", "Once-Per-Game Abilities", "Open Drafting", "Set Collection", "Sudden Death Ending", "Tags", "Tech Trees / Tech Tracks", "Tug of War", "Variable Player Powers", "Variable Set-up", "Victory Points as a Resource"],
+    mechanism: [
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    ]
+  };
 
   return (
-    <div className="aspect-square">
+    <div className="container mx-auto h-screen text-black">
       <ResponsiveChord
-        data={data}
-        keys={["John", "Raoul", "Jane", "Marcel", "Ibrahim"]}
+        data={data.mechanism}
+        keys={data.keys}
         margin={{ top: 36, right: 36, bottom: 36, left: 36 }}
         padAngle={0.02}
         innerRadiusRatio={0.96}
@@ -37,7 +62,10 @@ export default function Home() {
         colors={{ scheme: "nivo" }}
         theme={{ fontSize: 12 }}
         motionConfig="stiff"
+        arcTooltip={ArcTooltipMemoized}
+        ribbonTooltip={RibbonTooltipMemoized}
       />
     </div>
+
   );
 }
